@@ -1,13 +1,15 @@
 <?php
 require_once __DIR__ . '/models/Movie.php';
 
-$ritornoAlFuturo = new Movie("Ritorno Al Futuro", "1h 35m", 3, new Genre(["comico", "scientifico"], "verde"));
-$spidermanFarFromHome = new Movie("Spiderman Far From Home", "2h 15m", 5, new Genre(["azione", "supereroi"], "verde"));
-$fastAndFourius = new Movie("Spiderman Far From Home", "1h 15m", 2, new Genre(["azione", "lotta"], "giallo"));
+$movies = [
+    $ritornoAlFuturo = new Movie("Ritorno Al Futuro", "1h 35m", 4, new Genre(["comico", "scientifico"], "verde")),
+    $spidermanFarFromHome = new Movie("Spiderman Far From Home", "2h 15m", 5, new Genre(["azione", "supereroi"], "verde")),
+    $fastAndFourius = new Movie("Spiderman Far From Home", "1h 15m", 2, new Genre(["azione", "lotta"], "giallo")),
+];
 
-var_dump($ritornoAlFuturo);
-var_dump($spidermanFarFromHome);
-var_dump($fastAndFourius);
+//var_dump($ritornoAlFuturo);
+//var_dump($spidermanFarFromHome);
+//var_dump($fastAndFourius);
 
 ?>
 
@@ -22,6 +24,37 @@ var_dump($fastAndFourius);
     <title>OOP</title>
 </head>
 <body>
+
+    <div class="container my-5">
+
+        <h1 class="mb-3">Lista Film</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Durata</th>
+                <th scope="col">Genere</th>
+                <th scope="col">Ratings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($movies as $movie): ?>
+                <tr>
+                    <th scope="row"><?php echo $movie->movieName ?></th>
+                    <td><?php echo $movie->movieDuration ?></td>
+                    <td>
+                        <?php foreach($movie->genres->genres as $gen): ?>
+                            <?php echo $gen ?><br>
+                        <?php endforeach; ?>
+                    </td>
+                    <td><?php echo $movie->starString ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    </div>
     
 </body>
 </html>
